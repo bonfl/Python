@@ -43,6 +43,7 @@ class Knight(Player):
     hechizo = "hadouken"
     #Estoy diciendole que sobreescriba el metodo definido en la linea 29 y  30.
     def lanzar_hechizo(self):
+        #Esto no me anda
       return "{} y Exura".format(self.hechizo)
 
 # Le estoy diciendo que cree la clase Paladin heredando valores de la clase Player
