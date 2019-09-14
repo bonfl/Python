@@ -24,11 +24,19 @@ def iniciar_reloj():
     def horageneral(zona_horaria):
         formato = "%H:%M:%S"
         print()
+        
+        #Para que en el print muestre la ciudad
+        if zona_horaria == -3:
+            zona = "Uruguay"
+        elif zona_horaria == -5:
+            zona = "New York"
+        elif zona_horaria == -8:
+            zona = "San Francisco"
         #paso la hora a hora local de uru
         time_zone = datetime.timezone(datetime.timedelta(hours = zona_horaria))
         horageneralal = datetime.datetime.now(time_zone).time()
         hora_formateada = horageneralal.strftime(formato)
-        print("La hora exacta es: {}".format(hora_formateada))
+        print("La hora exacta en {} es: {}".format(zona,hora_formateada))
         imprimir_mensaje("Hora visualizada correctamente")
         input("Presione ENTER para continuar...   |")
         clear_screen()
@@ -60,7 +68,7 @@ def iniciar_reloj():
             print("1 - Visualizar hora local          |")
             print("2 - Visualizar fecha y hora local  |")
             print("3 - Visualizar hora en ny          |")
-            print("4 - Visualizar hora en SF          |")            
+            print("4 - Visualizar hora en SF          |")
             print("0 - Salir del programa             |")
             print()
             #Controlo caracteres invalidos
