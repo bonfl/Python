@@ -35,7 +35,7 @@ def create_family_member():
 
     #FORMA 2 DE INSERTAR(MÁS SENCILLA)
     abuela_nona = Person.create(name = "Nona", birthday = date(1956,11,10),is_relative = False)
-
+    abuela_rosa = Person.create(name = "Rosa", birthday = date(1956,11,10),is_relative = False)
 
     #crearé algunas mascotas y las asocio mediante la ForeignKeyField
     tommys_dino = Pet.create(owner = tio_tommy, name = "Reptar", animal_type = "Dinosaurio")
@@ -45,16 +45,34 @@ def create_family_member():
     tommys_dino.name = "Rex"
     tommys_dino.save()
 
+#Obtener datos de la tabla entera
+def get_family_members():
+    for person in Person.select():
+        print("Nombre: {} con fecha de nacimiento: {}".format(person.name,person.birthday))
 
+#Obtener datos de 1 persona en base a lo ingresado cuando llamo a la funcion
+def get_family_member(name):
+    family_member = Person.select().where(Person.name == name).get()#con el get le digo que solo es 1 registro
+    print("{} cumple el: {}".format(name, family_member.birthday))
+    print()
 
-
-
-
+#Otra forma de obtener los registros de 1 persona.
+def get_family_member2(name):
+    family_member = Person.get(Person.name == name)
+    print("{} cumple el: {}".format(name, family_member.birthday))
 
 #Llamo a la función de conexión
 create_and_connect()
 
 #Llamo a la función que inserta en la # DEBUG:
-create_family_member()
+#create_family_member()
+#Llamo a la funcion que llama a la tabla Person
+get_family_members()
 print()
-input("Felicidades, registros insertados correctamente, presione ENTER para salir...")
+#llamo a la funcion con valor de entrada ROSA
+get_family_member("Rosa")
+
+#llamo a mi funcion mejorada
+get_family_member2(input("Ingrese Nombre a buscar en la tabla: "))
+print()
+input("FIN, presione ENTER para salir...")
