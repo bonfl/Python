@@ -1,0 +1,17 @@
+{%extends "base_layout.html" %}
+<!doctype html>
+
+{%block titulo%}Contacto{%endblock%}
+
+{%block contenido%}
+
+<form action="{{ url_for("enviar") }}" method="POST">
+  <label for="nombre">Nombre: </label><input type="text" name="nombre" value=""><br><br>
+  <label for="email">Email: </label><input type="text" name="email" value=""><br><br>
+  <label for="comentario">Comentario: </label><input type="text" name="comentario" value="">
+  <input type="submit" value="Submit">
+
+</form>
+
+
+{%endblock %}
